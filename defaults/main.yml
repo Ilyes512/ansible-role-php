@@ -1,0 +1,21 @@
+---
+ansidev_package_state: present
+ansidev_production: false
+
+php_packages_state: "{{ ansidev_package_state }}"
+php_ppa: php-7.0
+php_packages:
+  - php7.0-common
+  - php-redis
+  - php7.0-mysql
+  - php7.0-pgsql
+  - php7.0-sqlite3
+  - php7.0-curl
+  - php7.0-gd
+  - php-memcached
+  - php-imagick
+  - php7.0-json
+  - php7.0-intl
+php_dev_packages: []
+php_production_packages: []
+php_xdebug: false

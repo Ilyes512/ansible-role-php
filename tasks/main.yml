@@ -1,0 +1,56 @@
+---
+- name: PHP | Add ppa Repository
+  sudo: yes
+  apt_repository:
+    repo: "ppa:ondrej/{{ php_ppa }}"
+    update_cache: yes
+    state: present
+
+- name: PHP | Install php7 fpm and cli
+  sudo: yes
+  apt: "{{ item }}"
+    pkg: php7.0-fpm
+    update_cache: yes
+    cache_valid_time: 3600
+    state: "{{ php_packages_state }}"
+  with_items:
+    - php7.0-cli
+    - php7.0-fpm
+
+- name: PHP | Install PHP Packages
+  sudo: yes
+  apt:
+    pkg: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
+  with_items: php_packages
+
+ - name: PHP | Install dev PHP Packages
+   sudo: yes
+   apt:
+     pkg: "{{ item }}"
+     update_cache: yes
+     cache_valid_time: 3600
+     state: present
+   with_items: php_dev_packages
+  when: not ansidev_production
+
+- name: PHP | Install production PHP Packages
+  sudo: yes
+  apt:
+    pkg: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
+  with_items: php_production_packages
+  when: ansidev_production
+
+- name: PHP | Install xDebug
+  sudo: yes
+  apt:
+    pkg: php-xdebug
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
+  when: php_xdebug
