@@ -8,8 +8,8 @@
 
 - name: PHP | Install php7 fpm and cli
   sudo: yes
-  apt: "{{ item }}"
-    pkg: php7.0-fpm
+  apt:
+    pkg: "{{ item }}"
     update_cache: yes
     cache_valid_time: 3600
     state: "{{ php_packages_state }}"
