@@ -16,6 +16,9 @@
   with_items:
     - php7.0-cli
     - php7.0-fpm
+  notify:
+    - restart php7.0-fpm
+    - restart php7.0-cli
 
 - name: PHP | Install PHP Packages
   sudo: yes
@@ -52,5 +55,5 @@
     pkg: php-xdebug
     update_cache: yes
     cache_valid_time: 3600
-    state: present
+    state: "{{ php_packages_state }}"
   when: php_xdebug
