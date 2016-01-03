@@ -29,14 +29,14 @@
     state: "{{ php_packages_state }}"
   with_items: php_packages
 
- - name: PHP | Install dev PHP Packages
-   sudo: yes
-   apt:
-     pkg: "{{ item }}"
-     update_cache: yes
-     cache_valid_time: 3600
-     state: "{{ php_packages_state }}"
-   with_items: php_dev_packages
+- name: PHP | Install dev PHP Packages
+  sudo: yes
+  apt:
+    pkg: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: "{{ php_packages_state }}"
+  with_items: php_dev_packages
   when: not ansidev_production
 
 - name: PHP | Install production PHP Packages
