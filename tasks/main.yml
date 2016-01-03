@@ -16,9 +16,7 @@
   with_items:
     - php7.0-cli
     - php7.0-fpm
-  notify:
-    - restart php7.0-fpm
-    - restart php7.0-cli
+  notify: restart php7.0-fpm
 
 - name: PHP | Install PHP Packages
   sudo: yes
