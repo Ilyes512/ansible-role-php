@@ -5,6 +5,7 @@
     repo: "ppa:ondrej/{{ php_ppa }}"
     update_cache: yes
     state: present
+  when: not (php_ppa is defined or php_ppa is none or php_ppa | trim == '')
 
 - name: PHP | Install php5 fpm and cli
   sudo: yes
