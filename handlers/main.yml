@@ -1,6 +1,6 @@
 ---
-- name: restart php7.0-fpm
+- name: restart php5-fpm
   service:
-    name: php7.0-fpm
+    name: php5-fpm
     enabled: yes
     state: restarted
