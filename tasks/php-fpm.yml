@@ -1,5 +1,6 @@
 ---
 - name: PHP | Set permissions on socket - owner
+  sudo: yes
   lineinfile:
     dest: "{{ php_fpm_path }}/pool.d/www.conf"
     regexp: "^;?listen.owner"
@@ -8,6 +9,7 @@
   notify: restart php5-fpm
 
 - name: PHP | Set permissions on socket - group
+  sudo: yes
   lineinfile:
     dest: "{{ php_fpm_path }}/pool.d/www.conf"
     regexp: "^;?listen.group"
@@ -16,6 +18,7 @@
   notify: restart php5-fpm
 
 - name: PHP | Set permissions on socket - mode
+  sudo: yes
   lineinfile:
     dest: "{{ php_fpm_path }}/pool.d/www.conf"
     regexp: "^;?listen.mode"
@@ -24,6 +27,7 @@
   notify: restart php5-fpm
 
 - name: PHP | Ensure timezone is set in fpm php.ini
+  sudo: yes
   lineinfile:
     dest: "{{ php_fpm_path }}/php.ini"
     regexp: "^;?date.timezone"
@@ -32,6 +36,7 @@
   notify: restart php5-fpm
 
 - name: PHP | Disable fix_pathinfo for php .ini files
+  sudo: yes
   lineinfile:
     dest: "{{ php_fpm_path }}/php.ini"
     regexp: "^;?cgi.fix_pathinfo"
@@ -40,6 +45,7 @@
   notify: restart php5-fpm
 
 - name: PHP | Set max upload filesize
+  sudo: yes
   lineinfile:
     dest: "{{ php_fpm_path }}/php.ini"
     regexp: "^;?upload_max_filesize"
@@ -48,6 +54,7 @@
   notify: restart php5-fpm
 
 - name: PHP | Set max post size
+  sudo: yes
   lineinfile:
     dest: "{{ php_fpm_path }}/php.ini"
     regexp: "^;?post_max_size"
