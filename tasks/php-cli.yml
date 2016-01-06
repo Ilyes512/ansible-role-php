@@ -1,5 +1,6 @@
 ---
 - name: PHP | Ensure timezone is set in cli php.ini
+  sudo: yes
   lineinfile:
     dest: "{{ php_cli_path }}/php.ini"
     regexp: "^;?date.timezone"
