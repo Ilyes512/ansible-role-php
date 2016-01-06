@@ -56,3 +56,5 @@
     cache_valid_time: 3600
     state: "{{ php_packages_state }}"
   when: php_xdebug
+
+- include: configure.yml

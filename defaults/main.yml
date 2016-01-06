@@ -19,3 +19,8 @@ php_packages:
 php_dev_packages: []
 php_production_packages: []
 php_xdebug: false
+php_fpm_path: /etc/php5/fpm
+php_cli_path: /etc/php5/cli
+php_date_timezone: Europe/Amsterdam
+php_max_file_upload: 100m
+php_max_body_size: 106m

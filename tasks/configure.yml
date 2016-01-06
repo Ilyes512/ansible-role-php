@@ -1,0 +1,14 @@
+---
+- stat:
+    path: "{{ php_fpm_path }}/php.ini"
+  register: php_fpm_ini_stat
+
+- stat:
+    path: "{{ php_cli_path }}/php.ini"
+  register: php_cli_ini_stat
+
+- include: php-fpm.yml
+  when: php_fpm_ini_stat.stat.exists
+
+- include: php-cli.yml
+  when: php_cli_ini_stat.stat.exists

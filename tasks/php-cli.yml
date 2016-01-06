@@ -1,0 +1,7 @@
+---
+- name: PHP | Ensure timezone is set in cli php.ini
+  lineinfile:
+    dest: "{{ php_cli_path }}/php.ini"
+    regexp: "^;?date.timezone"
+    line: "date.timezone = {{ php_date_timezone }}"
+    state: present
