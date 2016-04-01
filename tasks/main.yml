@@ -25,7 +25,7 @@
     update_cache: yes
     cache_valid_time: 3600
     state: "{{ php_packages_state }}"
-  with_items: php_packages
+  with_items: "{{ php_packages }}"
 
 - name: PHP | Install dev PHP Packages
   sudo: yes
@@ -34,7 +34,7 @@
     update_cache: yes
     cache_valid_time: 3600
     state: "{{ php_packages_state }}"
-  with_items: php_dev_packages
+  with_items: "{{ php_dev_packages }}"
   when: not ansidev_production
 
 - name: PHP | Install production PHP Packages
@@ -44,7 +44,7 @@
     update_cache: yes
     cache_valid_time: 3600
     state: "{{ php_packages_state }}"
-  with_items: php_production_packages
+  with_items: "{{ php_production_packages }}"
   when: ansidev_production
 
 - name: PHP | Install xDebug
@@ -54,4 +54,4 @@
     update_cache: yes
     cache_valid_time: 3600
     state: "{{ php_packages_state }}"
-  when: php_xdebug
+  when: "{{ php_xdebug }}"
