@@ -3,7 +3,7 @@ ansidev_package_state: present
 ansidev_production: false
 
 php_packages_state: "{{ ansidev_package_state }}"
-php_ppa: php-7.0
+php_ppa: php
 php_packages:
   - php7.0-common
   - php-redis
