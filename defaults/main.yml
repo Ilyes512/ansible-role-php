@@ -3,7 +3,8 @@ ansidev_package_state: present
 ansidev_production: false
 
 php_packages_state: "{{ ansidev_package_state }}"
-php_ppa: php
+php_ppa: php # leave empty, if you dont want to use the PPA
+php_fpm_state: "{{ ansidev_package_state }}" # latest|absent|present|build-dep
 php_packages:
   - php7.0-common
   - php-redis

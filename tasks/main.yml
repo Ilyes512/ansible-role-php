@@ -1,25 +1,30 @@
 ---
-- name: PHP | Add ppa Repository
-  sudo: yes
+- name: Add ppa Repository
+  become: yes
   apt_repository:
     repo: "ppa:ondrej/{{ php_ppa }}"
     update_cache: yes
     state: present
 
-- name: PHP | Install php7 fpm and cli
-  sudo: yes
+- name: Install php7.0-cli
+  become: yes
   apt:
-    pkg: "{{ item }}"
+    pkg: php7.0-cli
     update_cache: yes
     cache_valid_time: 3600
     state: "{{ php_packages_state }}"
-  with_items:
-    - php7.0-cli
-    - php7.0-fpm
+
+- name: Install php7.0-fpm
+  become: yes
+  apt:
+    pkg: php7.0-fpm
+    update_cache: yes
+    cache_valid_time: 3600
+    state: "{{ php_fpm_state }}"
   notify: restart php7.0-fpm
 
-- name: PHP | Install PHP Packages
-  sudo: yes
+- name: Install PHP Packages
+  become: yes
   apt:
     pkg: "{{ item }}"
     update_cache: yes
@@ -27,8 +32,8 @@
     state: "{{ php_packages_state }}"
   with_items: "{{ php_packages }}"
 
-- name: PHP | Install dev PHP Packages
-  sudo: yes
+- name: Install dev PHP Packages
+  become: yes
   apt:
     pkg: "{{ item }}"
     update_cache: yes
@@ -37,8 +42,8 @@
   with_items: "{{ php_dev_packages }}"
   when: not ansidev_production
 
-- name: PHP | Install production PHP Packages
-  sudo: yes
+- name: Install production PHP Packages
+  become: yes
   apt:
     pkg: "{{ item }}"
     update_cache: yes
@@ -47,8 +52,8 @@
   with_items: "{{ php_production_packages }}"
   when: ansidev_production
 
-- name: PHP | Install xDebug
-  sudo: yes
+- name: Install xDebug
+  become: yes
   apt:
     pkg: php-xdebug
     update_cache: yes
