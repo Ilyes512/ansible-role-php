@@ -24,7 +24,7 @@ Example Playbook
 ```
 - hosts: servers
   roles:
-    - { role: ilyes512.php, tag: ansidev.php }
+    - { role: ilyes512.php, tag: ['ansidev.php'] }
 ```
 
 License
